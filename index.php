@@ -44,7 +44,7 @@ if ($op == 'edit') {
     $q1         = mysqli_query($koneksi, $sql1);
     $r1         = mysqli_fetch_array($q1);
     $nama                = $r1['nama'];
-    $jenis_kelamin                = $r1['jenis_kelamin'];
+    $jenis_kelamin       = $r1['jenis_kelamin'];
     $email               = $r1['email'];
     $alamat              = $r1['alamat'];
     $jurusan_prodi       = $r1['jurusan_prodi'];
@@ -105,7 +105,35 @@ if (isset($_POST['simpan'])) {
     <!-- -Style html-->
     <style>
     .mx-auto {
-        width: 1000px
+        width: 1300px
+    }
+
+    .lnama {
+        max-width: 110px;
+    }
+
+    .ljk {
+        max-width: 140px;
+    }
+
+    .lemail {
+        max-width: 200px;
+    }
+
+    .lalamat {
+        max-width: 200px;
+    }
+
+    .ljp {
+        max-width: 117px;
+    }
+
+    .ltahun {
+        max-width: 70px;
+    }
+
+    .laksi {
+        max-width: 130px;
     }
 
     .card {
@@ -114,6 +142,14 @@ if (isset($_POST['simpan'])) {
 
     body {
         background-color: #DFDEEE;
+    }
+
+    .heder {
+        text-align: center;
+    }
+
+    .isi {
+        text-align: justify;
     }
     </style>
 </head>
@@ -191,7 +227,8 @@ if (isset($_POST['simpan'])) {
                             <select class="form-control" name="jurusan_prodi" id="jurusan_prodi">
                                 <option value="">- Pilih Jurusan/Prodi -</option>
                                 <option value="TEKKOM/TEKKOM"
-                                    <?php if ($jurusan_prodi == "TEKKOM/TEKKOM") echo "selected" ?>>TEKKOM/TEKKOM
+                                    <?php if ($jurusan_prodi == "TEKKOM/TEKKOM") echo "selected" ?>>
+                                    TEKKOM/TEKKOM
                                 </option>
                                 <option value="TEKKOM/TIMD"
                                     <?php if ($jurusan_prodi == "TEKKOM/TIMD") echo "selected" ?>>
@@ -223,15 +260,15 @@ if (isset($_POST['simpan'])) {
             <div class="card-body">
                 <table class="table">
                     <thead>
-                        <tr>
+                        <tr class="heder">
                             <th scope="col">#</th>
-                            <th scope="col">Nama</th>
-                            <th scope="col">Jenis Kelamin</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Alamat</th>
-                            <th scope="col">Jurusan/Prodi</th>
-                            <th scope="col">Tahun</th>
-                            <th scope="col">Aksi</th>
+                            <th class="lnama" scope="col">Nama</th>
+                            <th class="ljk" scope="col">Jenis Kelamin</th>
+                            <th class="lemail" scope="col">Email</th>
+                            <th class="lalamat" scope="col">Alamat</th>
+                            <th class="ljp" scope="col">Jurusan/Prodi</th>
+                            <th class="ltahun" scope="col">Tahun</th>
+                            <th class="laksi" scope="col">Aksi</th>
                         </tr>
                     </thead>
                     <!-- Mengambil data dari database untuk ditampilkan ke html form -->
@@ -243,28 +280,28 @@ if (isset($_POST['simpan'])) {
                         while ($r2 = mysqli_fetch_array($q2)) {
                             $id              = $r2['id'];
                             $nama            = $r2['nama'];
-                            $jenis_kelamin            = $r2['jenis_kelamin'];
+                            $jenis_kelamin   = $r2['jenis_kelamin'];
                             $email           = $r2['email'];
                             $alamat          = $r2['alamat'];
                             $jurusan_prodi   = $r2['jurusan_prodi'];
                             $tahun           = $r2['tahun'];
 
                         ?>
-                        <tr>
+                        <tr class="isi">
                             <th scope="row"><?php echo $urut++ ?></th>
-                            <td scope="row"><?php echo $nama ?></td>
-                            <td scope="row"><?php echo $jenis_kelamin ?></td>
-                            <td scope="row"><?php echo $email ?></td>
-                            <td scope="row"><?php echo $alamat ?></td>
-                            <td scope="row"><?php echo $jurusan_prodi ?></td>
-                            <td scope="row"><?php echo $tahun ?></td>
-                            <td scope="row">
+                            <th class="lnama" scope="row"><?php echo $nama ?></th>
+                            <th class="ljk" scope="row"><?php echo $jenis_kelamin ?></th>
+                            <th class="lemail" scope="row"><?php echo $email ?></th>
+                            <th class="lalamat" scope="row"><?php echo $alamat ?></th>
+                            <th class="ljp" scope="row"><?php echo $jurusan_prodi ?></th>
+                            <th class="ltahun" scope="row"><?php echo $tahun ?></th>
+                            <th class="laksi" scope="row">
                                 <a href="index.php?op=edit&id=<?php echo $id ?>"><button type="button"
                                         class="btn btn-warning">Edit</button></a>
                                 <a href="index.php?op=delete&id=<?php echo $id?>"
                                     onclick="return confirm('Yakin mau delete data?')"><button type="button"
                                         class="btn btn-danger">Delete</button></a>
-                            </td>
+                            </th>
                         </tr>
                         <?php
                         }
